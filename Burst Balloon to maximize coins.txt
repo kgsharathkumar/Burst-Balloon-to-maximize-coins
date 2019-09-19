@@ -1,0 +1,22 @@
+We have been given N balloons, each with a number of coins associated with it. On bursting a balloon i, the number of coins gained is equal to A[i-1]*A[i]*A[i+1]. Also, balloons i-1 and i+1 now become adjacent. Find the maximum possible profit earned after bursting all the balloons. Assume an extra 1 at each boundary.
+
+Examples:
+
+Input : 5, 10
+Output : 60
+Explanation - First Burst 5, Coins = 1*5*10
+              Then burst 10, Coins+= 1*10*1
+              Total = 60
+
+Input : 1, 2, 3, 4, 5
+Output : 110
+
+Hint:
+
+A recursive solution is discussed here. We can solve this problem using dynamic programming.
+First, consider a sub-array from indices Left to Right(inclusive).
+If we assume the balloon at index Last to be the last balloon to be burst in this sub-array, we would say the coined gained to be-A[left-1]*A[last]*A[right+1].
+Also, the total Coin Gained would be this value, plus dp[left][last – 1] + dp[last + 1][right], where dp[i][j] means maximum coin gained for sub-array with indices i, j.
+Therefore, for each value of Left and Right, we need find and choose a value of Last with maximum coin gained, and update the dp array.
+Our Answer is the value at dp[1][N].
+
